@@ -5,8 +5,8 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import ru.mobdev.features.cache.InMemoryCache
-import ru.mobdev.features.cache.TokenCache
+import ru.mobdev.cache.InMemoryCache
+import ru.mobdev.cache.TokenCache
 import java.util.UUID
 
 fun Application.configureLoginRouting() {

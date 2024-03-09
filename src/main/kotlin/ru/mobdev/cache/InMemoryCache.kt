@@ -1,4 +1,4 @@
-package ru.mobdev.features.cache
+package ru.mobdev.cache
 
 import ru.mobdev.features.registration.Registration
 
