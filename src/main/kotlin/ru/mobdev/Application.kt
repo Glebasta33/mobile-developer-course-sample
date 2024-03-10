@@ -8,9 +8,10 @@ import ru.mobdev.plugins.*
 
 fun main() {
     Database.connect(
-        url = "jdbc:postgresql://localhost:5432/mobile_developer_course",
+        url = "jdbc:postgresql://127.0.0.1:5432/mobile_developer_course",
         driver = "org.postgresql.Driver",
-        password = "postgres"
+        user = "postgres",
+        password = "admin"
     )
 
     embeddedServer(CIO, port = 8080, host = "0.0.0.0", module = Application::module)
@@ -18,6 +19,6 @@ fun main() {
 }
 
 fun Application.module() {
-    configureRouting()
     configureSerialization()
+    configureRouting()
 }
