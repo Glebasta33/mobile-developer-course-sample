@@ -2,6 +2,7 @@ package ru.mobdev.database.tokens
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object TokensTable : Table("tokens") {
@@ -16,6 +17,23 @@ object TokensTable : Table("tokens") {
                 it[login] = tokenDto.login
                 it[token] = tokenDto.token
             }
+        }
+    }
+
+    fun fetchTokens(): List<TokensDTO> {
+        return try {
+            transaction {
+                TokensTable.selectAll().toList()
+                    .map {
+                        TokensDTO(
+                            id = it[TokensTable.id],
+                            token = it[token],
+                            login = it[login]
+                        )
+                    }
+            }
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 
