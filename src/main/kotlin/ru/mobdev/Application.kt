@@ -1,21 +1,25 @@
 package ru.mobdev
 
 import io.ktor.server.application.*
-import io.ktor.server.cio.*
 import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 import org.jetbrains.exposed.sql.Database
-import ru.mobdev.plugins.*
+import ru.mobdev.plugins.configureRouting
+import ru.mobdev.plugins.configureSerialization
 
 fun main() {
     Database.connect(
-        url = "jdbc:postgresql://127.0.0.1:5432/mobile_developer_course",
+        url = System.getenv("DATABASE_CONNECTION_STRING"),
         driver = "org.postgresql.Driver",
-        user = "postgres",
-        password = "admin"
+        user = System.getenv("POSTGRES_USER"),
+        password = System.getenv("POSTGRES_PASSWORD")
     )
 
-    embeddedServer(CIO, port = 8080, host = "0.0.0.0", module = Application::module)
-        .start(wait = true)
+    embeddedServer(
+        Netty,
+        port = System.getenv("SERVER_PORT").toInt(),
+        module = Application::module
+    ).start(wait = true)
 }
 
 fun Application.module() {
