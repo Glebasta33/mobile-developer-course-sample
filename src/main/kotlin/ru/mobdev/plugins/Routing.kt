@@ -12,6 +12,9 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello Backend!")
         }
+        get("/demo") {
+            call.respondText("HELLO! I LOVE YOU :)")
+        }
     }
     configureLoginRouting()
     configureRegistrationRouting()
