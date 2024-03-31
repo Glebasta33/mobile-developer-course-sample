@@ -26,7 +26,6 @@ object UsersTable : Table("users") {
             transaction {
                 val userModel = UsersTable.selectAll().where { login.eq(requestLogin) }.singleOrNull()
 
-                println("MY_TEST: $userModel")
                 userModel?.let {
                     UserDTO(
                         login = userModel[login],
@@ -37,7 +36,7 @@ object UsersTable : Table("users") {
                 }
             }
         } catch (e: Exception) {
-            println("MY_TEST: ${e.message}")
+            println("MY_TEST: ERROR ${e.message}")
             null
         }
 
