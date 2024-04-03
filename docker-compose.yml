@@ -24,7 +24,6 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "admin"
     volumes:
-      - ./db-data:/var/lib/postgresql/data
       - ./sql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - db_network
