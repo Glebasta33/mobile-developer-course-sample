@@ -24,10 +24,10 @@ fun main() {
 
 private fun initDatabase() {
     Database.connect(
-        url = System.getenv("DATABASE_CONNECTION_STRING"),
+        url = "jdbc:postgresql://62.113.115.167/test_db",
         driver = "org.postgresql.Driver",
-        user = System.getenv("POSTGRES_USER"),
-        password = System.getenv("POSTGRES_PASSWORD")
+        user = "postgres",
+        password = "admin"
     )
 
     transaction {
